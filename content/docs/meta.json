@@ -1,0 +1,18 @@
+{
+    "title": "Argus",
+    "description": "The docs framework",
+    "icon": "Building",
+    "root": true,
+    "pages": [
+      "---Introduction---",
+      "index",
+      "philosophy",
+      "---Hardware Plugins---",
+      "plugin",
+      "(integrations)",
+      "---Scripting---",
+      "nodes",
+      "---Visualization---",
+      "widgets"
+    ]
+}
