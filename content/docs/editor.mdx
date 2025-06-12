@@ -1,0 +1,27 @@
+---
+title: Editor
+description: Build scripts to control and monitor hardware
+---
+
+![Argus Editor](https://argus.engineering/assets/editor.png)
+
+The editor is the core of Argus. It tells the project how to run. It is designed to be a modular tool. Meaning it can be ran, in parallel, as:
+- a standalone tool
+- with other tools in the Argus suite (like the dashboard)
+- with external tools (like LabView, Custom c++, python, matlab scripts)
+
+### Scripting
+
+The editor allows you to build scripts to control and monitor hardware. Each project is associated with scripts that run ***in parallel*** to each other.
+For example, if building a project testing a model rocket, you may structure the scripts as:
+
+**Scripts**
+    - *setup* - This script is run once at the beginning of the project. It is used to setup the hardware and software environment.
+    - *navigate* - Navigate the rocket to a desired position.
+    - *measure* - Determine, record, and upload the rocket's position.
+    - *cleanup* - Clean up the hardware and software environment after the project is complete.
+
+Each script is run in parallel, and the results are logged to the dashboard.
+
+
+

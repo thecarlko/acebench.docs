@@ -1,0 +1,39 @@
+---
+title: Data Node
+description: Recording data for with each run in real time - can be visualized with the dashboard
+---
+
+Data nodes are used to record data with a test **in real time**. They can accept any data type, and simply return it after recording it.
+
+- Nodes meant to be used with the [Dashboard](/dashboard) can only accept `number` data types.
+- They cannot perform actions, they can only record data.
+- Their ID must be unique (or they will be overwritten by a different node), and in all lower case.
+
+## Example
+Recording the battery level of your computer:
+
+Code Node:
+```python
+import subprocess
+import re
+
+def main() -> int:
+    output = subprocess.check_output(["pmset", "-g", "batt"]).decode("utf-8")
+    match = re.search(r'(\d+)%', output)
+    if match:
+        return int(match.group(1))
+    return -1
+```
+
+Data Node:
+| ID  | Type | Delimeter |
+|----|------|---------|
+| battery-level | number | 1000ms |
+
+This would record the battery level *(or -1 if it cannot be found)* every 1000ms whenever the project is running.
+
+## Note:
+The project as it is currently setup would only run one time. To run the project and record data continuously, you must add a [While Node](/while) to the script.
+
+
+

@@ -6,13 +6,12 @@
     "pages": [
       "---Introduction---",
       "index",
-      "philosophy",
-      "---Hardware Plugins---",
-      "plugin",
-      "(integrations)",
       "---Scripting---",
-      "nodes",
+      "editor",
+      "scripts",
+      "---Nodes---",
+      "...(nodes)",
       "---Visualization---",
-      "widgets"
+      "dashboard"
     ]
 }

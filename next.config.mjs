@@ -7,4 +7,15 @@ const config = {
   reactStrictMode: true,
 };
 
-export default withMDX(config);
+export default {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'argus.engineering',
+        pathname: '/**',
+      },
+    ],
+  },
+  ...withMDX(config),
+} 

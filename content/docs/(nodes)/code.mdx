@@ -1,0 +1,59 @@
+---
+title: Code Node
+description: The fundamental control block of Argus
+---
+
+Code nodes are the most basic type of node. They can be used to essentially perform any task. All other nodes (except for data node) realistically can be written as code nodes chained together - however, this approach is not as flexible or readable.
+
+## Structure
+
+The general structure of a code node is:
+```python
+def main():
+```
+Each node must, as a minimum, have a `main` function. All other aspects are optional. However, including them allows for better type hinting and readability.
+
+*If you want to read the output of a previous node connected to a certain node, you can use the `input` parameter.*
+
+## Example
+
+By chaining code nodes together, you can essentially perform any task. For example, to read the `battery level` of your current computer, you could use the following nodes, chained together:
+
+```python
+import subprocess
+
+def main() -> str:
+    output = subprocess.check_output(["pmset", "-g", "batt"]).decode("utf-8")
+    return output
+```
+
+```python
+import re
+def main(input) -> int:
+    match = re.search(r'(\d+)%', input)
+    if match:
+        return int(match.group(1))
+    return -1
+```
+
+## Note:
+- The `import` statement is used to import modules. You can import any module you want.
+- The `main` function is the entry point of the node. All code nodes must have a `main` function.
+- The `-> str` and `-> int` are the return types of the node (good for type hinting, but not required)
+- The `input` and `output` are the data that is passed between nodes. For a node to accept data, it must have a parameter named `input` exactly. `output` as a name, however, is not nessesary. This code could have just as easily been written as:
+
+```python
+import subprocess
+def main():
+    return subprocess.check_output(["pmset", "-g", "batt"]).decode("utf-8")
+```
+
+```python
+import re
+def main(input):
+    match = re.search(r'(\d+)%', input)
+    if match:
+        return int(match.group(1))
+    return -1
+```
+

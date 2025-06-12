@@ -1,0 +1,46 @@
+---
+title: While Node
+description: Performing actions continuously
+---
+
+The while node is used to perform actions continuously over time. It has only one requirement:
+**The final node in the body must return a `boolean` value.**
+
+## Example
+Combining the while node with [Code Node](/code) allows you to perform actions continuously over time, and combining it with a [Data Node](/data) allows you to record data continuously.
+
+For example, to record the battery level of your computer every half second *(500ms)*, as long as the battery level is greater than 20%, you could use the following nodes connected together:
+
+### Code Node:
+```python
+import subprocess
+import re
+
+def main() -> int:
+    output = subprocess.check_output(["pmset", "-g", "batt"]).decode("utf-8")
+    match = re.search(r'(\d+)%', output)
+    if match:
+        return int(match.group(1))
+    return -1
+```
+
+### Data Node:
+| ID  | Type | Delimeter |
+|----|------|---------|
+| battery-level | number | 500ms |
+
+### Code Node (Condition):
+```python
+def main(input) -> bool:
+    return input >= 20
+```
+
+### Finished Example
+The finished example, combining all these nodes should look like this:
+The node `Final` and any other after it will run after the loop breaks (in this case when the battery level is less than 20%).
+
+![Argus Editor](https://argus.engineering/assets/sample.png)
+
+
+
+
