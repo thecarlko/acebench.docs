@@ -12,7 +12,7 @@ export default {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'argus.engineering',
+        hostname: 'acebench.co',
         pathname: '/**',
       },
     ],

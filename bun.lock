@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "argus",
+      "name": "acebench.docs",
       "dependencies": {
         "fumadocs-core": "15.5.1",
         "fumadocs-mdx": "11.6.7",
